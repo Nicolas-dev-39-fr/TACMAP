@@ -1,0 +1,60 @@
+:root{--bg:#0e110c;--panel:rgba(22,27,18,.94);--line:#2c3524;--text:#dde2d0;--muted:#7c876c;--accent:#c9a24b;--blue:#4c8dc4;--red:#c94b3f;--ok:#7fb04a;--top:46px}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font:14px/1.4 Bahnschrift,"Arial Narrow",system-ui,sans-serif}
+b{font-weight:600}
+.muted{color:var(--muted)}
+
+#map{position:fixed;inset:0;z-index:0;background:#0b0d09}
+
+/* Barre du haut */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;gap:10px;height:calc(var(--top) + env(safe-area-inset-top));padding:env(safe-area-inset-top) 12px 0;background:var(--panel);border-bottom:1px solid var(--line);font-size:12px;letter-spacing:.05em;white-space:nowrap}
+.brand{font-size:17px;font-weight:700;letter-spacing:.12em;color:var(--accent)}
+.brand span{color:var(--muted);font-size:12px;font-weight:400}
+.status-dot{display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:50%;background:var(--accent)}
+.status-dot.on{background:var(--ok)}
+.clock{font-variant-numeric:tabular-nums}
+
+/* Panneaux */
+.panel{position:fixed;z-index:400;top:calc(var(--top) + env(safe-area-inset-top) + 8px);width:240px;max-height:60vh;overflow:auto;background:var(--panel);border:1px solid var(--line)}
+.left-panel{left:8px}
+.right-panel{right:8px}
+.panel-title{padding:8px 10px;font-size:11px;letter-spacing:.1em;color:var(--accent);cursor:pointer}
+.panel.collapsed>:not(.panel-title){display:none}
+.unit{display:flex;align-items:center;gap:8px;padding:8px 10px;border-top:1px solid var(--line)}
+.unit small{margin-left:auto;color:var(--muted)}
+.info div{display:flex;justify-content:space-between;gap:10px;padding:6px 10px;border-top:1px solid var(--line)}
+.info span{color:var(--muted)}
+
+/* Légende et coordonnées (en bas à gauche : l'attribution OSM reste visible en bas à droite) */
+.legend{position:fixed;z-index:400;left:8px;bottom:calc(44px + env(safe-area-inset-bottom));padding:8px 10px;background:var(--panel);border:1px solid var(--line);font-size:12px;line-height:1.7}
+.legend-title{font-size:11px;letter-spacing:.1em;color:var(--accent)}
+.legend-icon{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:50%}
+.legend-icon.blue{background:var(--blue)}
+.legend-icon.red{background:var(--red)}
+.coordinates{position:fixed;z-index:400;left:8px;bottom:calc(8px + env(safe-area-inset-bottom));padding:6px 10px;background:var(--panel);border:1px solid var(--line);font:12px ui-monospace,Menlo,Consolas,monospace}
+
+/* Écran de configuration */
+.setup{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:var(--bg)}
+.setup.hidden{display:none}
+.setup-box{width:100%;max-width:360px}
+.setup-box .brand{font-size:26px}
+.subtitle{margin:4px 0 20px;font-size:12px;letter-spacing:.1em;color:var(--muted)}
+label{display:block;margin:14px 0 6px;font-size:12px;color:var(--muted)}
+input,select{width:100%;padding:11px 12px;font:inherit;font-size:16px;color:var(--text);background:#161b12;border:1px solid var(--line);border-radius:3px}
+input:focus,select:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button{width:100%;margin-top:20px;padding:13px;font:inherit;font-weight:700;letter-spacing:.08em;color:#14170f;background:var(--accent);border:0;border-radius:3px;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.gps-message{min-height:20px;margin-top:12px;font-size:13px;color:var(--accent)}
+
+/* Marqueurs sur la carte */
+.mk{display:flex;flex-direction:column;align-items:center;width:80px}
+.mk b{display:grid;place-items:center;width:24px;height:24px;border:2px solid #0b0d09;border-radius:50%;color:#0b0d09;font-size:13px}
+.mk.blue b{background:var(--blue)}
+.mk.red b{background:var(--red)}
+.mk span{max-width:80px;margin-top:2px;padding:0 5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:rgba(11,13,9,.85);border:1px solid var(--line);font-size:11px}
+
+@media (max-width:760px){
+  .legend,.brand span,.clock{display:none}
+  .setup-box .brand span{display:inline}
+  .panel{width:calc(50vw - 12px)}
+}

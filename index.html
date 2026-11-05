@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Obligatoire pour les tuiles OpenStreetMap : le navigateur doit envoyer le Referer -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>TACMAP Airsoft</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="setup" class="setup">
+  <div class="setup-box">
+    <div class="brand">TACMAP <span>// AIRSOFT</span></div>
+    <p class="subtitle">CONFIGURATION OPÉRATEUR</p>
+
+    <label for="playerName">Nom / indicatif</label>
+    <input id="playerName" maxlength="24" placeholder="Ex. ALPHA-01" autocomplete="off">
+
+    <label for="playerRoom">Code de groupe (le même pour toute l'équipe)</label>
+    <input id="playerRoom" maxlength="20" placeholder="Ex. PARTIE-12" autocomplete="off">
+
+    <label for="playerTeam">Équipe</label>
+    <select id="playerTeam">
+      <option value="blue">BLEUE</option>
+      <option value="red">ROUGE</option>
+    </select>
+
+    <label for="playerRole">Rôle</label>
+    <select id="playerRole">
+      <option value="rifleman">Rifleman</option>
+      <option value="medic">Medic</option>
+      <option value="support">Support</option>
+      <option value="sniper">Sniper</option>
+      <option value="leader">Squad Leader</option>
+    </select>
+
+    <button id="startButton">ACTIVER MA POSITION GPS</button>
+    <div id="gpsMessage" class="gps-message"></div>
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="brand">TACMAP <span>// AIRSOFT</span></div>
+  <div><span class="status-dot"></span><span id="gpsStatus">GPS EN ATTENTE</span></div>
+  <div>UNITÉS : <b id="unitCount">1</b></div>
+  <div class="clock" id="clock"></div>
+</header>
+
+<aside class="panel left-panel">
+  <div class="panel-title">ORDRE DE BATAILLE</div>
+  <div id="unitList"></div>
+</aside>
+
+<aside class="panel right-panel">
+  <div class="panel-title">MON UNITÉ</div>
+  <div id="unitInfo" class="info"></div>
+</aside>
+
+<div class="legend">
+  <div class="legend-title">SYMBOLOGIE</div>
+  <div><span class="legend-icon blue"></span>ÉQUIPE BLEUE</div>
+  <div><span class="legend-icon red"></span>ÉQUIPE ROUGE</div>
+  <div>★ SQUAD LEADER</div>
+  <div>✚ MEDIC</div>
+  <div>● RIFLEMAN</div>
+  <div>■ SUPPORT</div>
+  <div>◎ SNIPER</div>
+</div>
+
+<div id="coordinates" class="coordinates">GPS : --</div>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
